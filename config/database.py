@@ -1,6 +1,11 @@
-from peewee import SqliteDatabase
+from peewee import MySQLDatabase
 
-database = SqliteDatabase('database-v2.db')
+database = MySQLDatabase(
+    'mitologias',
+    user='root',
+    host='127.0.0.1',
+    port=3306
+)
 
 
 def startup_db():
