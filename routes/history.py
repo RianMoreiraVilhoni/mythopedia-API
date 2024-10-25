@@ -104,3 +104,15 @@ def read_history_by_god(god_id: int):
     stories = HistoryDB.select().where(HistoryDB.god == god)
 
     return {'stories': stories}
+
+@router.get('/mythologies/{mythologie_id}', response_model=HistoryReadList)
+def read_history_by_mythologie(mythologie_id: int):
+    mitology = MytologyDB.get_or_none(MytologyDB.id == mythologie_id)
+
+    if not mitology:
+        raise HTTPException(status_code=404, detail='mitology not found')
+
+    stories = HistoryDB.select().where(HistoryDB.mythology == mitology)
+
+    return {'stories': stories}
+
